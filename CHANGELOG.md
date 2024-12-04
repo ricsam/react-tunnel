@@ -1,5 +1,11 @@
 # @ricsam/react-tunnel
 
+## 0.0.3
+
+### Patch Changes
+
+- Add ts types to package.json
+
 ## 0.0.2
 
 ### Patch Changes
