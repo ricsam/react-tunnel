@@ -1,0 +1,12 @@
+*.test.ts
+*.test.tsx
+*.test.js
+.prettierrc
+bun.lockb
+CONTRIBUTING.md
+CHANGELOG.md
+tsconfig.build.json
+tsconfig.json
+.github
+.changeset
+LICENSE

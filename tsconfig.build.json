@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowJs": false,
+    "noEmit": false,
+    "isolatedDeclarations": true,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "outDir": "types"
+  },
+  "include": [
+    "index.tsx"
+  ],
+  "exclude": [
+    "*.test.ts",
+    "*.test.tsx"
+  ]
+}
