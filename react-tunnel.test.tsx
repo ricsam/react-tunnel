@@ -97,3 +97,93 @@ describe("Tunnel", () => {
     expect(getAllByText("Content")).toHaveLength(2);
   });
 });
+
+describe("Tunnel Race Conditions", () => {
+  it("handles InTunnel mounting/unmounting while OutTunnel exists", () => {
+    const tunnel = createTunnel();
+    const { rerender, getAllByText } = render(
+      <>
+        <OutTunnel tunnel={tunnel} />
+        <div>content</div>
+      </>,
+    );
+
+    expect(getAllByText("content")).toHaveLength(1);
+
+    // Mount InTunnel
+    rerender(
+      <>
+        <OutTunnel tunnel={tunnel} />
+        <InTunnel tunnel={tunnel}>
+          <div>content</div>
+        </InTunnel>
+        <div>content</div>
+      </>,
+    );
+    expect(getAllByText("content")).toHaveLength(2);
+
+    // Unmount InTunnel
+    rerender(
+      <>
+        <OutTunnel tunnel={tunnel} />
+        <div>content</div>
+      </>,
+    );
+    expect(getAllByText("content")).toHaveLength(1);
+
+    // Mount InTunnel again
+    rerender(
+      <>
+        <OutTunnel tunnel={tunnel} />
+        <InTunnel tunnel={tunnel}>
+          <div>content</div>
+        </InTunnel>
+        <div>content</div>
+      </>,
+    );
+    expect(getAllByText("content")).toHaveLength(2);
+  });
+
+  it("handles rapid unmount and mount cycles", () => {
+    const tunnel = createTunnel();
+    const TestComponent = () => (
+      <>
+        <OutTunnel tunnel={tunnel} />
+        <InTunnel tunnel={tunnel}>
+          <div>content</div>
+        </InTunnel>
+      </>
+    );
+
+    const { unmount } = render(<TestComponent />);
+
+    act(() => {
+      unmount();
+    });
+
+    // Immediately mount again
+    render(<TestComponent />);
+  });
+});
+
+describe("Tunnel state management", () => {
+  it("resets activeSource when InTunnel unmounts", () => {
+    const tunnel = createTunnel();
+
+    expect(tunnel.activeSource).toBe(false);
+
+    const { unmount } = render(
+      <InTunnel tunnel={tunnel}>
+        <div>content</div>
+      </InTunnel>,
+    );
+
+    expect(tunnel.activeSource).toBe(true);
+
+    act(() => {
+      unmount();
+    });
+
+    expect(tunnel.activeSource).toBe(false);
+  });
+});
