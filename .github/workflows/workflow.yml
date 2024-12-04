@@ -1,4 +1,4 @@
-name: linkfs
+name: react-tunnel
 on:
   push:
     branches:
