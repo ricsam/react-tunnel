@@ -1,6 +1,6 @@
 # @ricsam/react-tunnel
 
-This package allows you to define where you want components to end up. It is like a dynamic react portal. The code is quite simple, so instead of pulling down this you can just copy the code in [index.tsx](./index.tsx)
+This package allows you to define where you want components to end up in the react component hierarchy. It is like a managed react portal. This is useful if you are dealing with contexts or different React renderers like react-three-fiber or react-art. The code is quite simple, so instead of installing this package from npm you can just copy the code from [index.tsx](./index.tsx) and use it in your project.
 
 ```sh
 npm i @ricsam/react-tunnel
