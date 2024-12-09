@@ -1,5 +1,11 @@
 # @ricsam/react-tunnel
 
+## 0.0.4
+
+### Patch Changes
+
+- export the Tunnel type
+
 ## 0.0.3
 
 ### Patch Changes

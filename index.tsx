@@ -1,7 +1,8 @@
-import React, { useState, useLayoutEffect } from "react";
+import { useState, useLayoutEffect } from "react";
+import type { ReactNode } from "react";
 
-type Tunnel = {
-  callbacks: Set<(node: React.ReactNode) => void>;
+export type Tunnel = {
+  callbacks: Set<(node: ReactNode) => void>;
   activeSource: boolean;
 };
 
@@ -22,7 +23,7 @@ export function createTunnel(): Tunnel {
 
 interface InTunnelProps {
   tunnel: Tunnel;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 /**
@@ -37,7 +38,7 @@ interface InTunnelProps {
  *   <div>This content will be moved</div>
  * </InTunnel>
  */
-export function InTunnel({ tunnel, children }: InTunnelProps): React.ReactNode {
+export function InTunnel({ tunnel, children }: InTunnelProps): ReactNode {
   useLayoutEffect(() => {
     if (tunnel.activeSource) {
       throw new Error("Multiple InTunnels detected for the same tunnel");
@@ -68,10 +69,10 @@ interface OutTunnelProps {
  * <OutTunnel tunnel={tunnel} />
  */
 export function OutTunnel({ tunnel }: OutTunnelProps): JSX.Element {
-  const [content, setContent] = useState<React.ReactNode>(null);
+  const [content, setContent] = useState<ReactNode>(null);
 
   useLayoutEffect(() => {
-    const callback = (node: React.ReactNode) => setContent(node);
+    const callback = (node: ReactNode) => setContent(node);
     tunnel.callbacks.add(callback);
     return () => {
       tunnel.callbacks.delete(callback);
