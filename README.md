@@ -127,6 +127,31 @@ function Content() {
 }
 ```
 
+### Extra utils
+
+#### `useTunnelIsOpen`
+
+Hook to detect if any InTunnel is currently rendering content. Useful for conditionally rendering OutTunnel wrappers:
+
+```tsx
+function App() {
+  const open = useTunnelIsOpen(tunnel);
+  return (
+    <>
+      {open && (
+        <SidebarWrapper>
+          <OutTunnel tunnel={tunnel} />
+        </SidebarWrapper>
+      )}
+      <MySidebar />
+    </>
+  );
+}
+function MySidebar({ children }) {
+  return <InTunnel tunnel={tunnel}>{children}</InTunnel>;
+}
+```
+
 ## API
 
 ### `createTunnel()`

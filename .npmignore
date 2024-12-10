@@ -10,3 +10,11 @@ tsconfig.json
 .github
 .changeset
 LICENSE
+matchers.d.ts
+.gitignore
+bunfig.toml
+patch-dist-dirs.sh
+happydom.ts
+react-tunnel.test.tsx
+renovate.json
+testling-library.ts

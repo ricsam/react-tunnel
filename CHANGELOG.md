@@ -1,5 +1,11 @@
 # @ricsam/react-tunnel
 
+## 0.0.5
+
+### Patch Changes
+
+- Add useTunnelIsOpen
+
 ## 0.0.4
 
 ### Patch Changes

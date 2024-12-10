@@ -81,3 +81,29 @@ export function OutTunnel({ tunnel }: OutTunnelProps): JSX.Element {
 
   return <>{content}</>;
 }
+
+//#region OPTIONAL EXTRA UTILS
+
+/**
+ * Returns true if an InTunnel is currently rendering a visible ReactNode for the given tunnel.
+ *
+ * @param {Tunnel} tunnel - The tunnel instance
+ * @returns {boolean} True if an InTunnel is currently rendering a visible ReactNode
+ */
+export function useTunnelIsOpen(tunnel: Tunnel): boolean {
+  const [open, setOpen] = useState<boolean>(false);
+
+  useLayoutEffect(() => {
+    const callback = (node: ReactNode) => {
+      return setOpen(Boolean(node));
+    };
+    tunnel.callbacks.add(callback);
+    return () => {
+      tunnel.callbacks.delete(callback);
+    };
+  }, [tunnel]);
+
+  return open;
+}
+
+//#endregion
