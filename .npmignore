@@ -17,4 +17,4 @@ patch-dist-dirs.sh
 happydom.ts
 react-tunnel.test.tsx
 renovate.json
-testling-library.ts
+testing-library.ts
