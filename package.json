@@ -34,7 +34,7 @@
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.1.0",
     "@types/bun": "latest",
-    "@types/react": "18.3.17",
+    "@types/react": "18.3.18",
     "react": "18.3.1",
     "prettier": "3.4.2",
     "@changesets/cli": "2.27.11",
